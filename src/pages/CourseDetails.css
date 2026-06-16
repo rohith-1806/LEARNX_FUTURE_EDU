@@ -1,6 +1,6 @@
 .course-details-page {
   background-color: var(--bg-primary);
-  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100vh - 4rem);
   color: #1e293b;
 }
 
@@ -9,8 +9,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8rem 2rem;
-  gap: 1.5rem;
+  padding: 5.5rem 1.5rem;
+  gap: 1rem;
   min-height: 50vh;
 }
 
@@ -25,7 +25,7 @@
 
 .course-details-error {
   text-align: center;
-  padding: 6rem 2rem;
+  padding: 4rem 1.5rem;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -45,7 +45,8 @@
   background-color: #7c3aed;
   color: white;
   border: none;
-  padding: 0.65rem 1.5rem;
+  padding: 0.5rem 1.2rem;
+  min-height: 36px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -60,7 +61,7 @@
 .purple-hero-banner {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c084fc 100%);
   color: white;
-  padding: 4.5rem 2rem;
+  padding: 2rem 1.5rem;
 }
 
 .banner-content-container {
@@ -69,7 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .banner-badge {
@@ -85,7 +86,7 @@
 
 .banner-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 850;
   margin: 0;
   line-height: 1.2;
@@ -121,13 +122,13 @@
 .details-body-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 1.5rem 1rem;
 }
 
 .details-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 2.5rem;
+  gap: 1.5rem;
   align-items: start;
 }
 
@@ -145,23 +146,23 @@
 .details-main-col {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .desc-card {
-  padding: 2rem;
+  padding: 1.2rem;
 }
 
 .desc-card h3, .syllabus-preview-card h3, .explore-syllabus-card h3 {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 750;
   margin: 0 0 1rem 0;
   color: #0f172a;
 }
 
 .description-text {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: #475569;
   margin: 0 0 2rem 0;
@@ -170,9 +171,9 @@
 .desc-specs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
   background-color: #f8fafc;
-  padding: 1.5rem;
+  padding: 1.2rem;
   border-radius: 12px;
 }
 
@@ -211,7 +212,7 @@
 
 /* Syllabus Preview Outline */
 .syllabus-preview-card {
-  padding: 2rem;
+  padding: 1.2rem;
 }
 
 .section-intro {
@@ -223,7 +224,7 @@
 .syllabus-list-outline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .syllabus-module-item {
@@ -234,7 +235,7 @@
 }
 
 .module-index-header {
-  padding: 1rem 1.25rem;
+  padding: 0.8rem 1rem;
   background-color: #f1f5f9;
   display: flex;
   align-items: center;
@@ -264,11 +265,11 @@
 }
 
 .submodule-preview-item {
-  padding: 0.75rem 1.25rem;
+  padding: 0.6rem 1rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.85rem;
+  gap: 0.5rem;
+  font-size: 0.8rem;
   color: #475569;
   border-top: 1px solid #f1f5f9;
 }
@@ -293,10 +294,10 @@
 }
 
 .explore-syllabus-card {
-  padding: 1.75rem;
+  padding: 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .pre-enroll-section {

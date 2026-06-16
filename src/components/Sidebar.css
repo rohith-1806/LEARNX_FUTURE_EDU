@@ -2,7 +2,7 @@
   width: 320px;
   background: var(--bg-primary);
   border-right: 1px solid #e5e7eb;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
   position: sticky;

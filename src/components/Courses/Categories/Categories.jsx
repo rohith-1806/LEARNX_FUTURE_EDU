@@ -131,9 +131,7 @@ getCategories();
 
 
 
-if(loading)
-
-return <h1>Loading...</h1>;
+if(loading)return null;
 
 
 

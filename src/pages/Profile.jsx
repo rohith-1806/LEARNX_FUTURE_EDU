@@ -51,7 +51,17 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [submittingPassword, setSubmittingPassword] = useState(false);
 
+  const [showPasswordChange, setShowPasswordChange] = useState(() => {
+    return user?.firstLogin === true;
+  });
+
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setShowPasswordChange(user.firstLogin === true);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (!localStorage.getItem("token") && !localStorage.getItem("userToken")) {
@@ -142,6 +152,11 @@ const Profile = () => {
       alert("Password updated successfully!");
       setNewPassword("");
       setConfirmPassword("");
+      if (user) {
+        user.firstLogin = false;
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+      }
+      setShowPasswordChange(false);
     } catch (err) {
       alert(err.message || "Failed to update password.");
     } finally {
@@ -191,49 +206,51 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="credentials-card rounded-card shadow-card">
-            <h3>Update Password</h3>
-            <form onSubmit={handleChangePassword}>
-              <div className="form-group-item">
-                <label htmlFor="newPassword">New Password</label>
-                <input
-                  type="password"
-                  id="newPassword"
-                  placeholder="Enter New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  required
-                />
-              </div>
+          {showPasswordChange && (
+            <div className="credentials-card rounded-card shadow-card">
+              <h3>Update Password</h3>
+              <form onSubmit={handleChangePassword}>
+                <div className="form-group-item">
+                  <label htmlFor="newPassword">New Password</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="Enter New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                  />
+                </div>
 
-              <div className="form-group-item">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  placeholder="Re-type New Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </div>
+                <div className="form-group-item">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Re-type New Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </div>
 
-              <button
-                type="submit"
-                className="btn-update-pwd"
-                disabled={submittingPassword}
-              >
-                {submittingPassword ? "Saving..." : "Change Password"}
-              </button>
-            </form>
-          </div>
+                <button
+                  type="submit"
+                  className="btn-update-pwd"
+                  disabled={submittingPassword}
+                >
+                  {submittingPassword ? "Saving..." : "Change Password"}
+                </button>
+              </form>
+            </div>
+          )}
         </aside>
 
         {/* Right Column: Dynamic LMS logs */}
         <main className="profile-main-col">
           {/* Section 1: Active Enrollments */}
           <div className="profile-section-card rounded-card shadow-card">
-            <h3>Enrolled Learning Pathways ({enrollments.length})</h3>
+            <h3 className="section-heading-premium">Enrolled Learning Pathways ({enrollments.length})</h3>
             {enrollments.length === 0 ? (
               <div className="empty-profile-section">
                 <p>You haven't enrolled in any courses yet.</p>
@@ -257,7 +274,9 @@ const Profile = () => {
                       </div>
 
                       <div className="row-progress-col">
-                        <div className="progress-value-label">{progressVal}% Complete</div>
+                        <div className="progress-value-label">
+                          {progressVal === 100 ? "✅ Completed" : `${progressVal}% Complete`}
+                        </div>
                         <ProgressBar progress={progressVal} />
                       </div>
 
@@ -266,7 +285,7 @@ const Profile = () => {
                           className="btn-row-action"
                           onClick={() => navigate(enroll.hasModules ? `/player/${courseId}` : `/course/${courseId}`)}
                         >
-                          Continue →
+                          {progressVal === 100 ? "View Course →" : "Continue Learning →"}
                         </button>
                       </div>
                     </div>
@@ -320,12 +339,12 @@ const Profile = () => {
               <div className="profile-events-list">
                 {events.map((regEvt) => {
                   const evtDetail = regEvt.eventId || regEvt;
-                  if (!evtDetail || !evtDetail.name) return null;
+                  if (!evtDetail || (!evtDetail.name && !evtDetail.title)) return null;
 
                   return (
                     <div className="profile-event-row" key={regEvt._id}>
                       <div className="evt-row-main">
-                        <h4>{evtDetail.name}</h4>
+                        <h4>{evtDetail.title || evtDetail.name}</h4>
                         <div className="evt-row-meta">
                           <span>📅 {evtDetail.date ? new Date(evtDetail.date).toLocaleDateString() : "TBA"}</span>
                           <span>📍 {evtDetail.location || "Online"}</span>

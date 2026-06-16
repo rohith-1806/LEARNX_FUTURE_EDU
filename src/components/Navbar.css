@@ -27,7 +27,7 @@
   display: grid;
   grid-template-columns: 1.5fr 3fr 1.5fr;
   align-items: center;
-  height: 4.5rem;
+  height: 3.5rem;
 }
 
 .navbar-logo {
@@ -125,7 +125,7 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 1.875rem;
   margin: 0;
   padding: 0;
   justify-self: center;
@@ -136,13 +136,16 @@
   font-weight: 650;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  /* CURSOR FIX: Use specific properties, NOT 'all' — 'all' includes
+     transform which would animate translateY shifts and break the cursor */
+  transition: color 0.2s ease, background-color 0.2s ease;
   position: relative;
   padding: 0.25rem 0;
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
+  color: #7c3aed;
+  text-shadow: 0 0 15px rgba(124, 58, 237, 0.35);
 }
 
 .nav-link::after {
@@ -169,6 +172,7 @@
   justify-self: end;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .guest-menu {
@@ -181,9 +185,9 @@
   color: var(--primary-color);
   font-weight: 650;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-login:hover {
@@ -195,9 +199,9 @@
   color: white;
   font-weight: 650;
   text-decoration: none;
-  padding: 0.5rem 1.25rem;
+  padding: 0.4rem 1rem;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease;
   box-shadow: 0 4px 10px rgba(168, 85, 247, 0.2);
 }
 
@@ -209,24 +213,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1rem;
+  height: 100%;
 }
 
 .profile-icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease;
+  transition: filter 0.2s ease;
 }
 
 .profile-icon-btn:hover {
-  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .avatar-svg {
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border-radius: 50%;
+  width: 28px;
+  height: 28px;
 }
 
 .btn-logout {
@@ -234,11 +241,12 @@
   color: #475569;
   border: 1px solid #cbd5e1;
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1;
 }
 
 .btn-logout:hover {
@@ -260,7 +268,7 @@
 
   .navbar-menu {
     position: absolute;
-    top: 4.5rem;
+    top: 4rem;
     left: 0;
     width: 100%;
     background: var(--bg-primary);

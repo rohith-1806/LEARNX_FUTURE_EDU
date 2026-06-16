@@ -199,13 +199,7 @@ return "https://images.unsplash.com/photo-1498050108023-c5249f4df085";
 
 
 
-if(loading){
-
-
-return <h2>Loading...</h2>
-
-
-}
+if(loading)return null;
 
 
 
@@ -222,7 +216,7 @@ return(
 
 
 
-<h1 className="department-heading">
+<h1 className="department-heading section-heading-premium">
 
 Departments
 

@@ -30,35 +30,16 @@ const [loading,setLoading]=useState(true);
 
 
 
-// IMAGE
-
-
-const getImage=(name="")=>{
-
-
-name=name.toLowerCase();
-
-
-
-if(name.includes("tech"))
-
-return "https://images.unsplash.com/photo-1498050108023-c5249f4df085";
-
-
-if(name.includes("ai"))
-
-return "https://images.unsplash.com/photo-1677442136019-21780ecad995";
-
-
-if(name.includes("business"))
-
-return "https://images.unsplash.com/photo-1552664730-d307ca884978";
-
-
-
-return "https://images.unsplash.com/photo-1522202176988-66273c2fd55f";
-
-
+const getGradient = (id) => {
+  const colors = [
+    "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)",
+    "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+    "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+    "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+    "linear-gradient(135deg, #ec4899 0%, #be185d 100%)",
+  ];
+  const index = id ? String(id).charCodeAt(String(id).length - 1) % colors.length : 0;
+  return colors[index];
 };
 
 
@@ -317,9 +298,12 @@ loadDepartments();
 
 
 const openItem=async(item)=>{
-
-
-try{
+  if (home) {
+    navigate("/courses", { state: { autoOpenItem: item } });
+    return;
+  }
+  
+  try{
 
 
 setLoading(true);
@@ -564,7 +548,7 @@ history.slice(0,-1)
 
 if(loading)
 
-return <h1>Loading...</h1>;
+return null;
 
 
 
@@ -673,23 +657,7 @@ key={item._id}
 
 
 
-<img
-
-src={
-
-item.image ||
-
-getImage(
-
-item.name ||
-
-item.title
-
-)
-
-}
-
-/>
+<div className="course-card-banner" style={{ background: getGradient(item._id || item.title), height: '120px', width: '100%' }}></div>
 
 
 

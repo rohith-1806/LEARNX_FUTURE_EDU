@@ -285,9 +285,7 @@ return "https://images.unsplash.com/photo-1498050108023-c5249f4df085";
 
 
 
-if(loading)
-
-return <h1>Loading...</h1>;
+if(loading)return null;
 
 
 
@@ -314,9 +312,9 @@ onClick={()=>navigate(-1)}
 
 
 
-<h1 className="course-heading">
+<h1 className="course-heading section-heading-premium">
 
-Course contents
+Course Content
 
 </h1>
 

@@ -138,29 +138,27 @@ const Events = ({ home = false }) => {
       startAutoSlide();
     };
 
-    const getCardStatus = (index) => {
-      const total = events.length;
-      if (total === 0) return "hidden";
-      if (total === 1) return index === carouselIndex ? "active" : "hidden";
-      if (total === 2) {
-        if (index === carouselIndex) return "active";
-        return "next";
-      }
-      
-      let diff = index - carouselIndex;
-      if (diff < -total / 2) diff += total;
-      if (diff > total / 2) diff -= total;
-      
-      if (diff === 0) return "active";
-      if (diff === -1) return "prev";
-      if (diff === 1) return "next";
-      return "hidden";
+    const visibleIndices = [
+      (carouselIndex - 2 + events.length) % events.length,
+      (carouselIndex - 1 + events.length) % events.length,
+      carouselIndex,
+      (carouselIndex + 1) % events.length,
+      (carouselIndex + 2) % events.length,
+    ];
+
+    const getPositionClass = (indexInVisibleArray) => {
+      if (indexInVisibleArray === 0) return 'position-far';
+      if (indexInVisibleArray === 1) return 'position-near';
+      if (indexInVisibleArray === 2) return 'position-center';
+      if (indexInVisibleArray === 3) return 'position-near';
+      if (indexInVisibleArray === 4) return 'position-far';
+      return 'position-hidden';
     };
 
     return (
       <section className="home-events-section" id="events">
         <div className="home-events-header">
-          <h2 className="home-events-title">Upcoming Events</h2>
+          <h2 className="section-heading-premium">Upcoming Events</h2>
           <div className="carousel-controls">
             <button className="carousel-arrow prev" onClick={prevSlide} aria-label="Previous Slide">
               ←
@@ -179,13 +177,14 @@ const Events = ({ home = false }) => {
             </div>
           ) : (
             <div 
-              className="carousel-viewport-3d"
+              className="events-carousel-container"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {events.map((evt, idx) => {
-                const status = getCardStatus(idx);
-                if (status === "hidden") return null;
+              {events.length >= 5 ? visibleIndices.map((eventIdx, mapIdx) => {
+                const evt = events[eventIdx];
+                if (!evt) return null;
+                const status = getPositionClass(mapIdx);
 
                 const registered = isRegistered(evt._id);
                 const eventImage =
@@ -193,7 +192,46 @@ const Events = ({ home = false }) => {
                   "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop";
 
                 return (
-                  <div className={`carousel-slide-item-3d ${status}`} key={evt._id}>
+                  <div className={`event-carousel-card ${status}`} key={`${evt._id}-${mapIdx}`}>
+                    <div className="carousel-card-inner">
+                      <div className="carousel-card-banner">
+                        <img src={eventImage} alt={evt.name} className="carousel-card-img" />
+                        <span className={`evt-category-tag ${evt.category?.toLowerCase() === "it" ? "it" : "non-it"}`}>
+                          {evt.category || "General"}
+                        </span>
+                      </div>
+                      <div className="carousel-card-body">
+                        <h3>{evt.name}</h3>
+                        <div className="evt-meta-row">
+                          <span>📅 {evt.date ? new Date(evt.date).toLocaleDateString() : "TBA"}</span>
+                          <span>📍 {evt.location || "Online"}</span>
+                        </div>
+                        <p className="evt-desc-excerpt">{evt.description}</p>
+                      </div>
+                      <div className="carousel-card-footer">
+                        {registered ? (
+                          <div className="registered-tick-badge">✓ Spot Reserved</div>
+                        ) : (
+                          <button 
+                            className="btn-carousel-register"
+                            onClick={() => handleRegister(evt._id)}
+                            disabled={actionLoading}
+                          >
+                            Register Spot
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }) : events.map((evt, idx) => {
+                // Fallback for < 5 events
+                const registered = isRegistered(evt._id);
+                const eventImage =
+                  evt.image ||
+                  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop";
+                return (
+                  <div className={`event-carousel-card ${idx === carouselIndex ? 'position-center' : 'position-hidden'}`} key={evt._id} style={{ display: idx === carouselIndex ? 'block' : 'none' }}>
                     <div className="carousel-card-inner">
                       <div className="carousel-card-banner">
                         <img src={eventImage} alt={evt.name} className="carousel-card-img" />
@@ -247,7 +285,7 @@ const Events = ({ home = false }) => {
 
       <div className="events-layout-container">
         <main className="all-events-section">
-          <h2>Upcoming Schedules ({events.length})</h2>
+          <h2 className="section-heading-premium">Upcoming Schedules ({events.length})</h2>
           {events.length === 0 ? (
             <div className="empty-events-card">
               <span className="empty-icon">📅</span>
@@ -301,7 +339,7 @@ const Events = ({ home = false }) => {
 
         <aside className="my-events-sidebar">
           <div className="my-events-card">
-            <h3>My Reserved Events</h3>
+            <h3>My Reserved Events ({myEvents.length})</h3>
             {!user ? (
               <p className="sidebar-empty-note">Log in to view and track your reserved events.</p>
             ) : myEvents.length === 0 ? (

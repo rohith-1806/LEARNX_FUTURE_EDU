@@ -1,31 +1,60 @@
+/* ================================================
+   USER LOGIN PAGE — FULL THEME SUPPORT
+   Light theme: uses CSS vars (unchanged visual)
+   Dark theme: premium deep gradient page
+   ================================================ */
+
+/* ---------- PAGE WRAPPER ---------- */
 .user-login-container {
-  min-height: calc(100vh - 80px); /* Adjusts nicely right under your navbar */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f8fafc; /* Crisp, ultra-clean off-white background background */
-  background-image: 
+  background: var(--bg-section);
+  background-image:
     radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.06) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(79, 70, 229, 0.06) 0px, transparent 50%);
   padding: 40px 24px;
   box-sizing: border-box;
 }
 
-/* CLEAN PREMIUM CARD CONFIGURATION */
+/* ---------- DARK PAGE WRAPPER ---------- */
+[data-theme="dark"] .user-login-container {
+  background:
+    linear-gradient(
+      180deg,
+      #030712 0%,
+      #071127 50%,
+      #0A1020 100%
+    ) !important;
+  background-image: none !important;
+}
+
+/* ---------- LOGIN CARD ---------- */
 .user-login-form {
   width: 100%;
   max-width: 420px;
-  background: var(--bg-primary); /* Stark white card for excellent readability */
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
-  padding: 40px 36px;
-  box-shadow: 
+  padding: 32px 28px;
+  box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.02),
-    0 10px 30px -10px rgba(15, 23, 42, 0.08); /* Clean modern depth drop shadow */
+    0 10px 30px -10px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- DARK LOGIN CARD ---------- */
+[data-theme="dark"] .user-login-form {
+  background: rgba(12, 20, 38, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(124, 58, 237, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55) !important;
 }
 
 @keyframes cardAppear {
@@ -39,39 +68,47 @@
   }
 }
 
-/* TEXT TYPOGRAPHY HEADER */
+/* ---------- HEADING ---------- */
 .user-login-form h1 {
   text-align: center;
-  color: #0f172a; /* Dark gray Slate text */
-  font-size: 28px;
+  color: var(--text-primary);
+  font-size: 24px;
   font-weight: 800;
   margin: 0 0 8px 0;
   letter-spacing: -0.03em;
 }
 
-/* Added a small helper subtitle tag wrapper layout to balance the design */
+[data-theme="dark"] .user-login-form h1 {
+  color: #F8FAFC !important;
+}
+
+/* ---------- SUBTITLE (::before pseudo) ---------- */
 .user-login-form::before {
   content: "Sign in to access your platform console dashboard";
   display: block;
   text-align: center;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 14px;
   margin-bottom: 32px;
   line-height: 1.4;
 }
 
-/* TEXT AREA INPUTS fields */
+[data-theme="dark"] .user-login-form::before {
+  color: #94A3B8 !important;
+}
+
+/* ---------- INPUTS ---------- */
 .user-login-form input {
   width: 100%;
-  padding: 12px 16px;
-  margin-bottom: 20px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
   border-radius: 10px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-color);
   background: var(--bg-primary);
-  color: #0f172a;
+  color: var(--text-primary);
   font-size: 15px;
   outline: none;
-  box-sizing: border-box; /* Fixes text horizontal window overflow issues */
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
@@ -86,16 +123,38 @@
 .user-login-form input:focus {
   border-color: #7c3aed;
   background: var(--bg-primary);
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12); /* Modern focus halo ring */
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
 }
 
-/* THE PRIMARY SUBMIT BUTTON BUTTON */
+/* ---------- DARK INPUTS ---------- */
+[data-theme="dark"] .user-login-form input {
+  background: #0B1327 !important;
+  color: #E5E7EB !important;
+  border: 1px solid #1E293B !important;
+}
+
+[data-theme="dark"] .user-login-form input::placeholder {
+  color: #7C8AA6 !important;
+}
+
+[data-theme="dark"] .user-login-form input:hover {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .user-login-form input:focus {
+  border-color: #8B5CF6 !important;
+  background: #0B1327 !important;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18) !important;
+}
+
+/* ---------- BUTTON ---------- */
 .user-login-form button {
   width: 100%;
-  padding: 13px;
+  padding: 10px;
+  min-height: 36px;
   border: none;
   border-radius: 10px;
-  background: #7c3aed; /* Changed back to use your signature theme violet */
+  background: #7c3aed;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -115,14 +174,38 @@
   transform: translateY(0);
 }
 
-/* RESPONSIVE LAYOUT DECK */
-@media(max-width: 480px){
+/* ---------- DARK BUTTON ---------- */
+[data-theme="dark"] .user-login-form button {
+  background: linear-gradient(90deg, #7C3AED, #9333EA) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme="dark"] .user-login-form button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 30px rgba(124, 58, 237, 0.45),
+    0 0 20px rgba(139, 92, 246, 0.2) !important;
+}
+
+[data-theme="dark"] .user-login-form button:active {
+  transform: translateY(0) !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 480px) {
   .user-login-form {
-    padding: 32px 24px;
+    padding: 24px 20px;
     border-radius: 12px;
   }
 
   .user-login-form h1 {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  [data-theme="dark"] .user-login-form {
+    border-radius: 18px !important;
   }
 }

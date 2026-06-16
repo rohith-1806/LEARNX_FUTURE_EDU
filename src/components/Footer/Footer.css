@@ -1,8 +1,8 @@
 .footer{
     background: #1f1b5b;
     color: white;
-    padding-top: 45px;
-    margin-top: 80px;
+    padding-top: 32px;
+    margin-top: 40px;
   }
   
   .footer-container{
@@ -20,8 +20,8 @@
   }
   
   .footer-section h2{
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-size: 20px;
+    margin-bottom: 10px;
     font-weight: 700;
   }
   
@@ -35,8 +35,8 @@
   
   .footer-section p{
     color: #d4d4d8;
-    line-height: 1.8;
-    font-size: 16px;
+    line-height: 1.7;
+    font-size: 14px;
   }
   
   .footer-section ul{
@@ -45,18 +45,18 @@
   }
   
   .footer-section ul li{
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     color: #f1f5f9;
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .footer-bottom{
     border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 35px;
+    margin-top: 24px;
     text-align: center;
-    padding: 25px;
+    padding: 18px;
     color: #cbd5e1;
-    font-size: 15px;
+    font-size: 13px;
   }
   
   @media(max-width: 992px){

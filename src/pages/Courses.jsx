@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getDepartments, getCategories, getDomains, getTracks } from "../api/hierarchyApi";
 import { getCourses } from "../api/courseApi";
 import { getMyEnrollments, enrollInCourse } from "../api/enrollmentApi";
@@ -8,6 +8,7 @@ import "./Courses.css";
 
 const Courses = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   // Navigation states
   // level 0: Departments, 1: Categories, 2: Domains, 3: Tracks, 4: Courses
   const [level, setLevel] = useState(0);
@@ -21,7 +22,9 @@ const Courses = () => {
 
   useEffect(() => {
     const savedState = sessionStorage.getItem("courses_state");
-    if (savedState) {
+    if (location.state?.autoOpenItem) {
+      loadInitialData();
+    } else if (savedState) {
       try {
         const parsed = JSON.parse(savedState);
         setLevel(parsed.level);
@@ -64,9 +67,6 @@ const Courses = () => {
     setError(null);
     try {
       const depts = await getDepartments();
-      setItems(depts);
-      setLevel(0);
-      setTitle("Explore Categories");
 
       const token = localStorage.getItem("token") || localStorage.getItem("userToken");
       if (token && token !== "null" && token !== "undefined" && token.trim() !== "") {
@@ -76,6 +76,33 @@ const Courses = () => {
         } catch (enrollErr) {
           console.warn("Failed fetching enrollments, continuing as guest", enrollErr);
         }
+      }
+
+      if (location.state?.autoOpenItem) {
+        const targetDept = depts.find(d => d._id === location.state.autoOpenItem._id);
+        if (targetDept) {
+          const result = await getCategories(targetDept._id);
+          setItems(result);
+          setLevel(1);
+          setTitle(targetDept.name || targetDept.title);
+          
+          setHistory([{
+            level: 0,
+            items: depts,
+            title: "Explore Categories"
+          }]);
+          
+          // Clear the router state to avoid re-triggering on refresh
+          window.history.replaceState({}, document.title);
+        } else {
+          setItems(depts);
+          setLevel(0);
+          setTitle("Explore Categories");
+        }
+      } else {
+        setItems(depts);
+        setLevel(0);
+        setTitle("Explore Categories");
       }
     } catch (err) {
       console.error("Failed to load initial courses hierarchy", err);
@@ -200,7 +227,7 @@ const Courses = () => {
               ← Back
             </button>
           </div>
-          <h1 className="courses-section-title">{title}</h1>
+          <h1 className="courses-section-title section-heading-premium">{title}</h1>
           <p className="courses-section-subtitle">
             {level === 0 && "Select a learning domain path below to browse custom syllabus topics."}
             {level === 1 && "Browse specialized disciplines under this study track."}

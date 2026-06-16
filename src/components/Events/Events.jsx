@@ -151,7 +151,7 @@ const Events = ({ home }) => {
 
   return (
     <div className="events-container" id="events">
-      <h1 className="title">Upcoming Events</h1>
+      <h1 className="title section-heading-premium">Upcoming Events</h1>
 
       {loading ? (
         <p className="loading-text">Loading operational manifests...</p>

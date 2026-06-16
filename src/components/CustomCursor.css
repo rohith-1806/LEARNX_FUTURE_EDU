@@ -1,0 +1,60 @@
+/* =====================================
+   CORE ARROW CURSOR
+   ===================================== */
+
+.cursor-arrow-wrapper {
+  position: fixed;
+  top: -3px; /* slight offset to perfectly align SVG tip with real mouse pointer */
+  left: -3px;
+  pointer-events: none !important;
+  z-index: 999999;
+  will-change: transform;
+}
+
+.premium-arrow-svg {
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+/* =====================================
+   PARTICLE SYSTEM
+   ===================================== */
+
+.cursor-particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 999998;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%); /* Base centering, JS scales it from here */
+  /* Colors and shadows are applied dynamically in JS */
+}
+
+/* =====================================
+   HOVER EFFECTS
+   ===================================== */
+
+/* Subtle glow increase ONLY. NO size, scale, or layout changes! */
+.cursor-arrow-wrapper.cursor-hover .premium-arrow-svg {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(192, 132, 252, 0.6));
+}
+
+/* =====================================
+   SYSTEM CONTROLS
+   ===================================== */
+
+/* Replace default cursor visually on desktop */
+@media (min-width: 1024px) {
+  body, a, button, input, [role="button"], [class*="card"] {
+    cursor: none !important;
+  }
+}
+
+/* Disable custom cursor entirely on mobile */
+@media (max-width: 1023px) {
+  .cursor-arrow-wrapper, .cursor-particle {
+    display: none !important;
+  }
+}

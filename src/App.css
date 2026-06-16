@@ -40,11 +40,84 @@
   --shadow-sm:        0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Poppins',sans-serif}
 body{background-color:var(--bg-secondary);color:var(--text-primary);transition: background-color 0.3s ease, color 0.3s ease;}
 a{text-decoration:none}
-button{cursor:pointer;transition:.3s}
-button:hover{transform:translateY(-2px)}
+button{cursor:pointer;transition:background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;}
+
+/* ── CURSOR FIX: Navbar elements must NEVER translateY on hover ──
+   translateY shifts the element under the hidden cursor, creating
+   the illusion of the custom cursor "jumping". */
+.lernx-navbar button:hover,
+.lernx-navbar a:hover,
+.navbar-container button:hover,
+.navbar-container a:hover,
+nav button:hover,
+nav a:hover,
+.nav-link:hover,
+.btn-logout:hover,
+.btn-login:hover,
+.btn-signup:hover,
+.profile-icon-btn:hover {
+  transform: none !important;
+}
+
+/* ================================================
+   LIGHT THEME GLOW EFFECTS — Cards
+   Premium purple-tinted glow on hover
+   ================================================ */
+
+/* Base card glow — light mode */
+:root:not([data-theme="dark"]) .course-card,
+:root:not([data-theme="dark"]) .event-card,
+:root:not([data-theme="dark"]) .event-workspace-card,
+:root:not([data-theme="dark"]) .profile-section-card,
+:root:not([data-theme="dark"]) .certificate-badge-card,
+:root:not([data-theme="dark"]) .workshop-card,
+:root:not([data-theme="dark"]) .dashboard-card,
+:root:not([data-theme="dark"]) .department-card,
+:root:not([data-theme="dark"]) .quiz-card,
+:root:not([data-theme="dark"]) .pathway-item,
+:root:not([data-theme="dark"]) .hierarchy-item-card,
+:root:not([data-theme="dark"]) .my-events-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(120, 80, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(120, 80, 255, 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Card hover glow — light mode */
+:root:not([data-theme="dark"]) .course-card:hover,
+:root:not([data-theme="dark"]) .event-card:hover,
+:root:not([data-theme="dark"]) .event-workspace-card:hover,
+:root:not([data-theme="dark"]) .profile-section-card:hover,
+:root:not([data-theme="dark"]) .certificate-badge-card:hover,
+:root:not([data-theme="dark"]) .workshop-card:hover,
+:root:not([data-theme="dark"]) .dashboard-card:hover,
+:root:not([data-theme="dark"]) .department-card:hover,
+:root:not([data-theme="dark"]) .quiz-card:hover,
+:root:not([data-theme="dark"]) .pathway-item:hover,
+:root:not([data-theme="dark"]) .hierarchy-item-card:hover {
+  box-shadow:
+    0 8px 32px rgba(120, 80, 255, 0.18),
+    0 4px 16px rgba(59, 130, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* ================================================
+   LIGHT THEME GLOW EFFECTS — Buttons
+   ================================================ */
+:root:not([data-theme="dark"]) .btn-course-action.enrolled,
+:root:not([data-theme="dark"]) .btn-event-register,
+:root:not([data-theme="dark"]) .btn-carousel-register {
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+}
+
+:root:not([data-theme="dark"]) .btn-course-action.enrolled:hover,
+:root:not([data-theme="dark"]) .btn-event-register:hover,
+:root:not([data-theme="dark"]) .btn-carousel-register:hover {
+  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.35);
+}
 
 /* ================================================
    DARK THEME OVERRIDES — START
@@ -143,7 +216,112 @@ html[data-theme="dark"],
   color: var(--text-muted) !important;
 }
 
-/* Smooth theme transitions */
+/* ===================================================
+   PREMIUM DARK MODE CARD HOVER EFFECT (Task 3)
+   =================================================== */
+
+/* Base card state — dark mode */
+[data-theme="dark"] .course-card,
+[data-theme="dark"] .event-card,
+[data-theme="dark"] .profile-section-card,
+[data-theme="dark"] .user-details-card,
+[data-theme="dark"] .credentials-card,
+[data-theme="dark"] .certificate-badge-card,
+[data-theme="dark"] .workshop-card,
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .department-card,
+[data-theme="dark"] .quiz-card {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine overlay — hidden by default */
+[data-theme="dark"] .course-card::before,
+[data-theme="dark"] .event-card::before,
+[data-theme="dark"] .profile-section-card::before,
+[data-theme="dark"] .user-details-card::before,
+[data-theme="dark"] .credentials-card::before,
+[data-theme="dark"] .certificate-badge-card::before,
+[data-theme="dark"] .workshop-card::before,
+[data-theme="dark"] .dashboard-card::before,
+[data-theme="dark"] .department-card::before,
+[data-theme="dark"] .quiz-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hover state & Reveal shine — dark mode */
+[data-theme="dark"] .course-card:hover::before,
+[data-theme="dark"] .event-card:hover::before,
+[data-theme="dark"] .profile-section-card:hover::before,
+[data-theme="dark"] .user-details-card:hover::before,
+[data-theme="dark"] .credentials-card:hover::before,
+[data-theme="dark"] .certificate-badge-card:hover::before,
+[data-theme="dark"] .workshop-card:hover::before,
+[data-theme="dark"] .dashboard-card:hover::before,
+[data-theme="dark"] .department-card:hover::before,
+[data-theme="dark"] .quiz-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure card content stays above the shine overlay */
+[data-theme="dark"] .course-card > *,
+[data-theme="dark"] .event-card > *,
+[data-theme="dark"] .profile-section-card > *,
+[data-theme="dark"] .user-details-card > *,
+[data-theme="dark"] .credentials-card > *,
+[data-theme="dark"] .certificate-badge-card > *,
+[data-theme="dark"] .workshop-card > *,
+[data-theme="dark"] .dashboard-card > *,
+[data-theme="dark"] .department-card > *,
+[data-theme="dark"] .quiz-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover state glow — Apply To These Specific Card Types */
+[data-theme="dark"] .course-card:hover,
+[data-theme="dark"] .event-card:hover,
+[data-theme="dark"] .profile-section-card:hover,
+[data-theme="dark"] .certificate-badge-card:hover,
+[data-theme="dark"] .workshop-card:hover,
+[data-theme="dark"] .dashboard-card:hover,
+[data-theme="dark"] .department-card:hover,
+[data-theme="dark"] .quiz-card:hover,
+[data-theme="dark"] .pathway-item:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.35),
+    0 0 50px rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+[data-theme="dark"] .course-card,
+[data-theme="dark"] .event-card,
+[data-theme="dark"] .profile-section-card,
+[data-theme="dark"] .certificate-badge-card,
+[data-theme="dark"] .workshop-card,
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .department-card,
+[data-theme="dark"] .pathway-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Smooth theme transitions — EXCLUDES transform to prevent cursor jumps */
 *,
 *::before,
 *::after {
@@ -151,6 +329,8 @@ html[data-theme="dark"],
               color 0.15s ease,
               border-color 0.2s ease,
               box-shadow 0.2s ease;
+  /* NEVER add 'transform' or 'all' here — it would animate
+     every hover translateY across the site and break the custom cursor */
 }
 
 /* ===================================================
@@ -287,7 +467,7 @@ html[data-theme="dark"],
   background-color: var(--bg-card) !important;
   background: var(--bg-card) !important;
   border: 1px solid var(--border-color) !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
   box-shadow: var(--shadow-card) !important;
 }
 
@@ -396,7 +576,7 @@ html[data-theme="dark"],
   background: var(--bg-card) !important;
   border: 1px solid var(--border-color) !important;
   box-shadow: var(--shadow-card) !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
 }
 
 [data-theme="dark"] .course-card:hover,
@@ -611,7 +791,7 @@ html[data-theme="dark"],
   background: var(--bg-card) !important;
   border: 1px solid var(--border-color) !important;
   box-shadow: var(--shadow-card) !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
   color: var(--text-main) !important;
 }
 
@@ -779,7 +959,7 @@ html[data-theme="dark"],
   background-color: var(--bg-card) !important;
   background: var(--bg-card) !important;
   border: 1px solid var(--border-color) !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
   box-shadow: var(--shadow-card) !important;
   color: var(--text-main) !important;
 }
@@ -1055,6 +1235,130 @@ html[data-theme="dark"],
   color: var(--text-main) !important;
 }
 
+/* ===================================================
+   USER LOGIN & AUTH PAGES THEME REBUILD
+   =================================================== */
+[data-theme="dark"] .user-login-container,
+[data-theme="dark"] .create-account-container,
+[data-theme="dark"] [class*="login-container"],
+[data-theme="dark"] [class*="LoginContainer"],
+[data-theme="dark"] [class*="auth-container"],
+[data-theme="dark"] [class*="AuthContainer"],
+[data-theme="dark"] [class*="signup-container"],
+[data-theme="dark"] [class*="SignupContainer"] {
+  background: linear-gradient(180deg, #030712 0%, #071127 50%, #0A1020 100%) !important;
+  min-height: 100vh !important;
+}
+
+[data-theme="dark"] .user-login-form,
+[data-theme="dark"] .create-account-form,
+[data-theme="dark"] [class*="login-form"],
+[data-theme="dark"] [class*="LoginForm"],
+[data-theme="dark"] [class*="auth-form"],
+[data-theme="dark"] [class*="AuthForm"],
+[data-theme="dark"] [class*="signup-form"],
+[data-theme="dark"] [class*="SignupForm"] {
+  background: rgba(12, 20, 38, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(124, 58, 237, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55) !important;
+}
+
+[data-theme="dark"] .user-login-form h1,
+[data-theme="dark"] .create-account-form h1,
+[data-theme="dark"] [class*="login-form"] h1,
+[data-theme="dark"] [class*="auth-form"] h1,
+[data-theme="dark"] [class*="signup-form"] h1 {
+  color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .user-login-form input,
+[data-theme="dark"] .create-account-form input,
+[data-theme="dark"] [class*="login-form"] input,
+[data-theme="dark"] [class*="auth-form"] input,
+[data-theme="dark"] [class*="signup-form"] input {
+  background: #0B1327 !important;
+  background-color: #0B1327 !important;
+  color: #E5E7EB !important;
+  border: 1px solid #1E293B !important;
+}
+
+[data-theme="dark"] .user-login-form input::placeholder,
+[data-theme="dark"] .create-account-form input::placeholder,
+[data-theme="dark"] [class*="login-form"] input::placeholder,
+[data-theme="dark"] [class*="auth-form"] input::placeholder {
+  color: #7C8AA6 !important;
+}
+
+[data-theme="dark"] .user-login-form input:focus,
+[data-theme="dark"] .create-account-form input:focus,
+[data-theme="dark"] [class*="login-form"] input:focus,
+[data-theme="dark"] [class*="auth-form"] input:focus {
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18) !important;
+}
+
+[data-theme="dark"] .user-login-form button,
+[data-theme="dark"] .create-account-form button,
+[data-theme="dark"] [class*="login-form"] button[type="submit"],
+[data-theme="dark"] [class*="auth-form"] button[type="submit"],
+[data-theme="dark"] [class*="signup-form"] button[type="submit"] {
+  background: linear-gradient(90deg, #7C3AED, #9333EA) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3) !important;
+}
+
+[data-theme="dark"] .user-login-form button:hover,
+[data-theme="dark"] .create-account-form button:hover,
+[data-theme="dark"] [class*="login-form"] button[type="submit"]:hover,
+[data-theme="dark"] [class*="auth-form"] button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 30px rgba(124, 58, 237, 0.45),
+    0 0 20px rgba(139, 92, 246, 0.2) !important;
+}
+
 /* ================================================
    DARK THEME OVERRIDES — END
    ================================================ */
+
+/* =====================================================================
+   PREMIUM HEADINGS
+   ===================================================================== */
+
+.section-heading-premium {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 32px;
+}
+
+.section-heading-premium::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 40px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  border-radius: 4px;
+  animation: underline-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes underline-grow {
+  from { width: 0; opacity: 0; }
+  to   { width: 40px; opacity: 1; }
+}
+
+

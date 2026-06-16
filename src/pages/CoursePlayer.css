@@ -1,7 +1,7 @@
 .lms-player-container {
   display: flex;
   background-color: #f8fafc;
-  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100vh - 4rem);
   width: 100%;
   overflow: hidden;
 }
@@ -14,7 +14,7 @@
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - 4rem);
   overflow-y: auto;
   color: #1f2937;
 }
@@ -70,7 +70,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
   text-align: left;
   transition: background 0.2s ease;
 }
@@ -104,7 +103,6 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  cursor: pointer;
   text-align: left;
   font-size: 0.8rem;
   color: #4b5563;
@@ -161,7 +159,6 @@
   font-size: 0.85rem;
   color: #4b5563;
   text-align: left;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -208,7 +205,6 @@
   font-size: 0.8rem;
   padding: 0.6rem;
   border-radius: 6px;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -222,7 +218,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - 4rem);
   overflow: hidden;
 }
 
@@ -594,7 +590,6 @@
   font-size: 0.95rem;
   padding: 0.75rem 2rem;
   border-radius: 8px;
-  cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
@@ -964,4 +959,306 @@
 .btn-congrats-generate-cert:hover {
   transform: translateY(-2px);
   box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.4);
+}
+
+/* =========================================================
+   DARK THEME OVERRIDES FOR COURSE PLAYER
+   ========================================================= */
+[data-theme="dark"] .lms-player-container {
+  background-color: #0b1020;
+}
+
+[data-theme="dark"] .player-sidebar-wrapper {
+  background-color: #111827;
+  border-right-color: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .sidebar-header,
+[data-theme="dark"] .sidebar-footer,
+[data-theme="dark"] .submodule-list,
+[data-theme="dark"] .sidebar-certificate-row {
+  background-color: #111827;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .course-sidebar-title,
+[data-theme="dark"] .module-title {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .module-trigger {
+  background-color: #111827;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .module-trigger:hover,
+[data-theme="dark"] .submodule-item-row:hover,
+[data-theme="dark"] .certificate-item.unlocked:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .submodule-item-row {
+  background-color: #111827;
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .submodule-item-row.active {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border-left-color: #818cf8;
+}
+
+[data-theme="dark"] .submodule-item-row.completed .item-text {
+  color: #64748b;
+}
+
+[data-theme="dark"] .progress-info {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .certificate-item {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-leave-player {
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-leave-player:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+/* Video Section & Bottom Nav */
+[data-theme="dark"] .player-top-bar {
+  background-color: #111827;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .player-course-info h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .player-instructor-meta {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .player-video-section {
+  background-color: #0b1020;
+}
+
+[data-theme="dark"] .video-placeholder-box {
+  background-color: #111827;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .video-placeholder-box.completed {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+[data-theme="dark"] .player-bottom-navigation {
+  background-color: #111827;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .btn-player-nav {
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-player-nav:hover:not(:disabled) {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-player-nav:disabled {
+  background-color: #0f172a;
+  color: #475569;
+  border-color: transparent;
+}
+
+/* Completion Screen */
+[data-theme="dark"] .course-completion-view {
+  background-color: #0b1020;
+}
+
+[data-theme="dark"] .completion-card-premium {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .completion-card-premium h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .completion-card-premium p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .completion-stats-row {
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .stat-label {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .stat-value {
+  color: #f8fafc;
+}
+
+/* Modals */
+[data-theme="dark"] .congrats-modal-card {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .congrats-modal-card h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .congrats-modal-card p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .congrats-modal-card h3 {
+  color: #818cf8;
+}
+
+/* Forms */
+[data-theme="dark"] .certificate-generation-form-card h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .certificate-generation-form-card p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .form-input {
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .form-input:focus {
+  border-color: #818cf8;
+}
+
+[data-theme="dark"] .player-bottom-navigation-bar {
+  background-color: #111827;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .submodule-action-footer {
+  background-color: #111827;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .assignment-card-item {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .assignment-card-item h4 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .asm-marks {
+  background-color: #0f172a;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-player-back-nav,
+[data-theme="dark"] .btn-player-next {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-player-back-nav:hover,
+[data-theme="dark"] .btn-player-next:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .player-welcome-panel {
+  background-color: #0b1020;
+}
+
+[data-theme="dark"] .welcome-card-inner {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .welcome-card-inner h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .welcome-card-inner p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .form-input:disabled {
+  background-color: #0f172a !important;
+  color: #475569 !important;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .quiz-card {
+  background-color: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .submodule-content-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background-color: #0f172a;
+}
+
+[data-theme="dark"] .submodule-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .submodule-header h1 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .tutorial-markup h3 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .tutorial-markup p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .tutorial-box {
+  background-color: rgba(234, 179, 8, 0.15);
+  color: #fef08a;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+[data-theme="dark"] .video-player-frame {
+  background-color: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .tab-btn {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .tab-btn.active {
+  color: #818cf8;
 }

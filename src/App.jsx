@@ -10,6 +10,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero/Hero";
 import Footer from "./components/Footer/Footer";
+import CustomCursor from "./components/CustomCursor";
+import LearnXHelper from "./components/LearnXHelper/LearnXHelper";
 
 // AUTH PAGES
 import CreateAccount from "./components/CreateAccount/CreateAccount";
@@ -89,13 +91,17 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <BrowserRouter>
+    <>
+      <CustomCursor />
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
           <AppContent />
-        </BrowserRouter>
-      </AuthProvider>
-    </ThemeProvider>
+          </BrowserRouter>
+        </AuthProvider>
+      </ThemeProvider>
+      <LearnXHelper />
+    </>
   );
 }
 

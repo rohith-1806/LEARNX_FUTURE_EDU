@@ -741,7 +741,7 @@ const CoursePlayer = () => {
     const done = isCompleted(itemId, itemType);
     if (done) {
       return (
-        <button className="btn-complete-sub completed" disabled style={{ opacity: 0.75, cursor: "not-allowed" }}>
+        <button className="btn-complete-sub completed" disabled style={{ opacity: 0.75 }}>
           ✓ Completed
         </button>
       );
@@ -1221,7 +1221,7 @@ const CoursePlayer = () => {
                               <h4 style={{ marginBottom: "0.75rem" }}>{qIndex + 1}. {q.question}</h4>
                               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                                 {q.options?.map((opt, oIndex) => (
-                                  <label key={oIndex} style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
+                                  <label key={oIndex} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                                     <input
                                       type="radio"
                                       name={`quiz-${activeItem.data._id}-${qIndex}`}
@@ -1366,7 +1366,7 @@ const CoursePlayer = () => {
                             const cleanedCourse = { ...course, name: cleanCourseName(course?.name, course?.description) };
                             navigate("/certificate/preview", { state: { cert: certificateData, course: cleanedCourse } });
                           }}
-                          style={{ padding: "0.85rem 2rem", fontSize: "1rem", backgroundColor: "#4f46e5", color: "white", border: "none", borderRadius: "8px", cursor: "pointer" }}
+                          style={{ padding: "0.85rem 2rem", fontSize: "1rem", backgroundColor: "#4f46e5", color: "white", border: "none", borderRadius: "8px" }}
                         >
                           View Certificate
                         </button>
@@ -1419,7 +1419,7 @@ const CoursePlayer = () => {
                           className="form-input"
                           value={cleanCourseName(course?.name, course?.description) || ""}
                           disabled
-                          style={{ backgroundColor: "#f1f5f9", cursor: "not-allowed" }}
+                          style={{ backgroundColor: "#f1f5f9" }}
                         />
                       </div>
                       

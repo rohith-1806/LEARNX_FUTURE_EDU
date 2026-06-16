@@ -53,6 +53,9 @@ const CourseCard = ({ course, enrollment, onEnroll }) => {
           {course.difficulty || "Intermediate"}
         </span>
         <div className="banner-overlay">
+          <span className="course-category-badge">
+            {typeof course.category === 'object' ? course.category?.name : course.category || "Course"}
+          </span>
           <span className="course-status">{course.status || "Active"}</span>
         </div>
       </div>
