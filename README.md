@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LearnX - AI Learning Platform</title>
+<title>LearnX | AI Learning Platform</title>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
 
 *{
     margin:0;
@@ -17,182 +19,455 @@
     font-family:'Inter',sans-serif;
 }
 
+
+html{
+    scroll-behavior:smooth;
+}
+
+
 body{
+
+    min-height:100vh;
+
     background:
-    radial-gradient(circle at top,#7c3aed55,transparent 35%),
-    #080b16;
+    radial-gradient(circle at 20% 20%,#7c3aed55,transparent 35%),
+    radial-gradient(circle at 80% 10%,#06b6d455,transparent 35%),
+    #050816;
 
     color:white;
-    min-height:100vh;
-    padding:40px;
+
+    overflow-x:hidden;
+
 }
+
+
+
+
+/* BACKGROUND ANIMATION */
+
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:300px;
+height:300px;
+
+background:#7c3aed;
+
+filter:blur(180px);
+
+animation:move 8s infinite alternate;
+
+}
+
+
+@keyframes move{
+
+from{
+
+left:5%;
+top:10%;
+
+}
+
+to{
+
+left:70%;
+top:70%;
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+.container{
+
+width:90%;
+max-width:1200px;
+
+margin:auto;
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+
+
+
+
 
 /* HERO */
 
+
 .hero{
-    text-align:center;
-    padding:70px 20px;
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
 }
+
+
 
 .logo{
-    font-size:55px;
-    font-weight:800;
+
+font-size:90px;
+
+font-weight:900;
+
+
+background:
+linear-gradient(
+90deg,
+#fff,
+#8b5cf6,
+#22d3ee
+);
+
+background-size:300%;
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+animation:text 4s infinite alternate;
+
 }
 
-.logo span{
-    background:linear-gradient(90deg,#7c3aed,#38bdf8);
-    -webkit-background-clip:text;
-    color:transparent;
+
+
+@keyframes text{
+
+to{
+
+background-position:300%;
+
+}
+
 }
 
 
-.subtitle{
-    margin-top:20px;
-    color:#cbd5e1;
-    font-size:20px;
+
+.hero h2{
+
+font-size:28px;
+
+margin-top:20px;
+
+color:#cbd5e1;
+
 }
 
 
-/* BADGES */
+
+.hero p{
+
+margin-top:25px;
+
+max-width:700px;
+
+line-height:1.8;
+
+color:#94a3b8;
+
+font-size:18px;
+
+}
+
+
+
+
+
+
 
 .badges{
-    margin-top:35px;
+
+margin-top:40px;
+
 }
+
 
 .badges span{
 
-    background:
-    rgba(255,255,255,.1);
 
-    border:
-    1px solid rgba(255,255,255,.2);
+display:inline-block;
 
-    padding:10px 20px;
+margin:10px;
 
-    margin:8px;
+padding:12px 24px;
 
-    display:inline-block;
+border-radius:50px;
 
-    border-radius:30px;
+background:
+rgba(255,255,255,.08);
 
-    backdrop-filter:blur(10px);
+border:
+1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+}
+
+
+
+
+
+
+
+
+.title{
+
+text-align:center;
+
+font-size:45px;
+
+margin:80px 0 50px;
+
 }
 
 
-/* CARDS */
 
-.section-title{
 
-    margin-top:60px;
-    text-align:center;
-    font-size:35px;
 
-}
 
 
 .grid{
 
-    margin-top:40px;
+display:grid;
 
-    display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-    gap:25px;
+gap:25px;
 
 }
+
+
+
+
 
 
 .card{
 
-    background:
-    rgba(255,255,255,.08);
+padding:35px;
 
-    border:
-    1px solid rgba(255,255,255,.15);
+border-radius:25px;
 
-    border-radius:22px;
 
-    padding:30px;
+background:
+rgba(255,255,255,.07);
 
-    backdrop-filter:blur(15px);
 
-    transition:.3s;
+border:
+1px solid rgba(255,255,255,.15);
+
+
+backdrop-filter:
+blur(20px);
+
+
+transition:.35s;
 
 }
+
 
 
 .card:hover{
 
-    transform:
-    translateY(-8px);
+transform:
+translateY(-10px);
 
-    box-shadow:
-    0 0 35px #7c3aed88;
+
+box-shadow:
+0 0 40px #7c3aed88;
+
+border-color:#8b5cf6;
 
 }
+
 
 
 .card h3{
 
-    color:#a78bfa;
+font-size:23px;
 
-    margin-bottom:15px;
+margin-bottom:15px;
 
 }
+
 
 
 .card p{
 
-    color:#cbd5e1;
+color:#cbd5e1;
 
-    line-height:1.6;
+line-height:1.7;
 
 }
 
 
-/* TECH STACK */
+
+
+
+
+
+
 
 
 .tech{
 
-    text-align:center;
+display:flex;
 
-    margin-top:40px;
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:18px;
 
 }
+
 
 
 .tech span{
 
-    display:inline-block;
 
-    margin:10px;
+padding:16px 30px;
 
-    padding:12px 22px;
 
-    background:#111827;
+background:
+linear-gradient(
+135deg,
+#111827,
+#1e1b4b
+);
 
-    border-radius:12px;
 
-    border:1px solid #334155;
+border:
+
+1px solid #4338ca;
+
+
+border-radius:16px;
+
+
+font-weight:700;
+
+}
+
+
+
+
+
+
+
+
+
+.arch{
+
+
+text-align:center;
+
+font-size:25px;
+
+line-height:2.2;
+
+padding:40px;
+
+
+background:
+rgba(255,255,255,.06);
+
+
+border-radius:30px;
+
+
+border:
+1px solid rgba(255,255,255,.15);
 
 }
 
 
-/* FOOTER */
 
 
-footer{
 
-    text-align:center;
 
-    margin-top:80px;
 
-    color:#94a3b8;
+
+
+.screen{
+
+
+height:180px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+font-size:22px;
+
+font-weight:800;
+
+
+background:
+linear-gradient(
+135deg,
+#7c3aed55,
+#06b6d455
+);
+
+
+border-radius:25px;
 
 }
+
+
+
+
+
+
+
+
+
+.footer{
+
+
+margin-top:100px;
+
+padding:40px;
+
+text-align:center;
+
+color:#94a3b8;
+
+}
+
+
+
+
 
 
 
@@ -200,34 +475,55 @@ footer{
 
 </head>
 
-
 <body>
+
+
+
+<div class="container">
+
+
+
+
 
 
 <section class="hero">
 
 
 <h1 class="logo">
-🚀 Learn<span>X</span>
+
+🚀 LearnX
+
 </h1>
 
 
-<p class="subtitle">
+<h2>
 
-Next Generation AI Powered Learning Management System
+AI Powered Learning Management System
+
+</h2>
+
+
+
+<p>
+
+A next generation education platform built with intelligent
+course tracking, interactive learning, events,
+AI assistance and modern user experience.
 
 </p>
 
 
+
+
 <div class="badges">
 
-<span>⚡ AI Assistant</span>
+<span>🤖 AI Assistant</span>
 
-<span>📚 Smart Courses</span>
+<span>⚛ MERN Stack</span>
 
-<span>🎯 Progress Tracking</span>
+<span>🎯 Smart LMS</span>
 
-<span>🏆 Certificates</span>
+<span>🔥 Modern UI</span>
 
 </div>
 
@@ -237,12 +533,23 @@ Next Generation AI Powered Learning Management System
 
 
 
-<h2 class="section-title">
-✨ About LearnX
-</h2>
+
+
+
+
+
+
+
+<h1 class="title">
+
+✨ Core Features
+
+</h1>
+
 
 
 <div class="grid">
+
 
 
 <div class="card">
@@ -251,119 +558,137 @@ Next Generation AI Powered Learning Management System
 
 <p>
 
-Built-in AI assistant that helps students navigate courses,
-events, progress and learning activities instantly.
+Smart chatbot assistant that guides students
+through courses, progress, events and platform usage.
 
 </p>
 
 </div>
 
-
-
-<div class="card">
-
-<h3>📚 Smart Learning</h3>
-
-<p>
-
-Structured modules with tutorials, videos,
-assignments, quizzes and real-world projects.
-
-</p>
-
-</div>
 
 
 
 
 <div class="card">
 
-<h3>📊 Progress System</h3>
+<h3>📚 Smart Courses</h3>
 
 <p>
 
-Automatic progress tracking with saved completion status
-and synchronized course analytics.
+Technical and Non Technical learning paths with
+structured modules.
 
 </p>
 
 </div>
+
 
 
 
 
 <div class="card">
 
-<h3>🎉 Events Platform</h3>
+<h3>🎥 Course Player</h3>
 
 <p>
 
-Students can explore learning events,
-register programs and manage participation.
+Interactive roadmap with videos, lessons,
+assignments and learning progress.
 
 </p>
 
 </div>
 
 
-
-<div class="card">
-
-<h3>🎨 Futuristic UI</h3>
-
-<p>
-
-Modern glassmorphism interface,
-custom particle cursor and smooth animations.
-
-</p>
-
-</div>
 
 
 
 
 <div class="card">
 
-<h3>🔐 Secure Platform</h3>
+<h3>📊 Progress Tracking</h3>
 
 <p>
 
-Authentication based learning experience with
-personalized user data.
+Real time completion tracking with persistent
+learning records.
 
 </p>
 
 </div>
 
 
+
+
+
+
+<div class="card">
+
+<h3>🎯 Events System</h3>
+
+<p>
+
+Register, manage and participate in learning
+events and workshops.
+
+</p>
+
 </div>
 
 
 
 
 
-<h2 class="section-title">
 
-⚙️ Technology Stack
+<div class="card">
 
-</h2>
+<h3>🏆 Certificates</h3>
+
+<p>
+
+Generate certificates after successful course
+completion.
+
+</p>
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<h1 class="title">
+
+⚙️ Tech Stack
+
+</h1>
 
 
 
 <div class="tech">
 
+
 <span>⚛ React JS</span>
-
-<span>🟢 Node JS</span>
-
-<span>🚀 Express JS</span>
-
-<span>🍃 MongoDB</span>
 
 <span>🎨 CSS3</span>
 
-<span>🤖 AI Chatbot</span>
+<span>🟢 Node JS</span>
+
+<span>🚀 Express</span>
+
+<span>🍃 MongoDB</span>
+
+<span>🤖 AI Bot</span>
 
 
 </div>
@@ -372,66 +697,133 @@ personalized user data.
 
 
 
-<h2 class="section-title">
 
-🔥 Features
 
-</h2>
+
+
+
+<h1 class="title">
+
+🧠 Architecture
+
+</h1>
+
+
+
+<div class="arch">
+
+Frontend (React)
+
+<br>
+
+⬇
+
+<br>
+
+REST API Integration
+
+<br>
+
+⬇
+
+<br>
+
+Node + Express Server
+
+<br>
+
+⬇
+
+<br>
+
+MongoDB Database
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h1 class="title">
+
+🖥 Screens
+
+</h1>
 
 
 
 <div class="grid">
 
 
-<div class="card">
+<div class="screen">
 
-<p>
-✔ Technical & Non Technical Departments<br><br>
-
-✔ Course Player Roadmap<br><br>
-
-✔ Video Learning System<br><br>
-
-✔ Assignment Integration
-
-</p>
+🏠 Home Page
 
 </div>
 
 
 
-<div class="card">
+<div class="screen">
 
-<p>
-
-✔ Mark Complete Tracking<br><br>
-
-✔ Persistent Progress<br><br>
-
-✔ Event Registration<br><br>
-
-✔ AI Support Assistant
-
-</p>
-
-</div>
-
+📚 Course Dashboard
 
 </div>
 
 
 
+<div class="screen">
 
-<footer>
+🎬 Learning Player
 
-Made with 💜 for the future of online learning
+</div>
+
+
+
+<div class="screen">
+
+🤖 LearnX Helper
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer">
+
+
+Designed & Developed with 💜
 
 <br><br>
 
-© 2026 LearnX
+🚀 LearnX © 2026
 
-</footer>
 
+</div>
+
+
+
+
+
+
+</div>
 
 
 </body>
