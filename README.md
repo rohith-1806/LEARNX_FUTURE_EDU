@@ -1,70 +1,439 @@
-# Getting Started with Create React App
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<title>LearnX - AI Learning Platform</title>
 
-## Available Scripts
+<style>
 
-In the project directory, you can run:
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
-### `npm start`
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+body{
+    background:
+    radial-gradient(circle at top,#7c3aed55,transparent 35%),
+    #080b16;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    color:white;
+    min-height:100vh;
+    padding:40px;
+}
 
-### `npm test`
+/* HERO */
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+.hero{
+    text-align:center;
+    padding:70px 20px;
+}
 
-### `npm run build`
+.logo{
+    font-size:55px;
+    font-weight:800;
+}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+.logo span{
+    background:linear-gradient(90deg,#7c3aed,#38bdf8);
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+.subtitle{
+    margin-top:20px;
+    color:#cbd5e1;
+    font-size:20px;
+}
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+/* BADGES */
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+.badges{
+    margin-top:35px;
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+.badges span{
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    background:
+    rgba(255,255,255,.1);
 
-## Learn More
+    border:
+    1px solid rgba(255,255,255,.2);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    padding:10px 20px;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    margin:8px;
 
-### Code Splitting
+    display:inline-block;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    border-radius:30px;
 
-### Analyzing the Bundle Size
+    backdrop-filter:blur(10px);
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+/* CARDS */
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+.section-title{
 
-### Advanced Configuration
+    margin-top:60px;
+    text-align:center;
+    font-size:35px;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+}
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+.grid{
 
-### `npm run build` fails to minify
+    margin-top:40px;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+}
+
+
+.card{
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+
+.card:hover{
+
+    transform:
+    translateY(-8px);
+
+    box-shadow:
+    0 0 35px #7c3aed88;
+
+}
+
+
+.card h3{
+
+    color:#a78bfa;
+
+    margin-bottom:15px;
+
+}
+
+
+.card p{
+
+    color:#cbd5e1;
+
+    line-height:1.6;
+
+}
+
+
+/* TECH STACK */
+
+
+.tech{
+
+    text-align:center;
+
+    margin-top:40px;
+
+}
+
+
+.tech span{
+
+    display:inline-block;
+
+    margin:10px;
+
+    padding:12px 22px;
+
+    background:#111827;
+
+    border-radius:12px;
+
+    border:1px solid #334155;
+
+}
+
+
+/* FOOTER */
+
+
+footer{
+
+    text-align:center;
+
+    margin-top:80px;
+
+    color:#94a3b8;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="hero">
+
+
+<h1 class="logo">
+🚀 Learn<span>X</span>
+</h1>
+
+
+<p class="subtitle">
+
+Next Generation AI Powered Learning Management System
+
+</p>
+
+
+<div class="badges">
+
+<span>⚡ AI Assistant</span>
+
+<span>📚 Smart Courses</span>
+
+<span>🎯 Progress Tracking</span>
+
+<span>🏆 Certificates</span>
+
+</div>
+
+
+</section>
+
+
+
+
+<h2 class="section-title">
+✨ About LearnX
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🤖 LearnX Helper AI</h3>
+
+<p>
+
+Built-in AI assistant that helps students navigate courses,
+events, progress and learning activities instantly.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>📚 Smart Learning</h3>
+
+<p>
+
+Structured modules with tutorials, videos,
+assignments, quizzes and real-world projects.
+
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>📊 Progress System</h3>
+
+<p>
+
+Automatic progress tracking with saved completion status
+and synchronized course analytics.
+
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>🎉 Events Platform</h3>
+
+<p>
+
+Students can explore learning events,
+register programs and manage participation.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🎨 Futuristic UI</h3>
+
+<p>
+
+Modern glassmorphism interface,
+custom particle cursor and smooth animations.
+
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>🔐 Secure Platform</h3>
+
+<p>
+
+Authentication based learning experience with
+personalized user data.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<h2 class="section-title">
+
+⚙️ Technology Stack
+
+</h2>
+
+
+
+<div class="tech">
+
+<span>⚛ React JS</span>
+
+<span>🟢 Node JS</span>
+
+<span>🚀 Express JS</span>
+
+<span>🍃 MongoDB</span>
+
+<span>🎨 CSS3</span>
+
+<span>🤖 AI Chatbot</span>
+
+
+</div>
+
+
+
+
+
+<h2 class="section-title">
+
+🔥 Features
+
+</h2>
+
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<p>
+✔ Technical & Non Technical Departments<br><br>
+
+✔ Course Player Roadmap<br><br>
+
+✔ Video Learning System<br><br>
+
+✔ Assignment Integration
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<p>
+
+✔ Mark Complete Tracking<br><br>
+
+✔ Persistent Progress<br><br>
+
+✔ Event Registration<br><br>
+
+✔ AI Support Assistant
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+<footer>
+
+Made with 💜 for the future of online learning
+
+<br><br>
+
+© 2026 LearnX
+
+</footer>
+
+
+
+</body>
+
+</html>
