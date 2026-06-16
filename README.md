@@ -15,10 +15,6 @@ The platform combines modern UI design, intelligent assistance, structured cours
 
 ---
 
-# ✨ Core Features
-
----
-
 ## 🤖 LearnX Helper AI
 
 Smart chatbot assistant that helps students navigate and understand the platform.
